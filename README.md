@@ -1,28 +1,16 @@
-# @tailwindcss/jit production issue
+# @tailwindcss/jit purge issue
 
-Certain arbitrary styles don't seem to work in production builds. They render fine in development mode.
+Using `@tailwindcss/jit` produces larger production CSS than `tailwindcss` when
+using a plugin like `@tailwindcss/forms`.
 
-## Example (`grid-cols-`)
+## Files of interest
 
-```jsx
-function Home() {
-  return (
-    <div className="px-96">
-      <main className="grid grid-cols-[1fr,128px] gap-x-4 items-center p-8">
-        <div className="bg-blue-400">Big column</div>
-        <div className="bg-gray-400">Small column</div>
-      </main>
-    </div>
-  )
-}
+### non-JIT (`tailwindcss`)
 
-export default Home;
-```
+- [non-jit.css](non-jit.css) - 1.67 kB Next.js estimate (4.8 kB on disk)
+- [non-jit.prettier.css](non-jit.prettier.css) (for easier reviewing)
 
-### Development
+### JIT (`@tailwindcss/jit@0.1.3`)
 
-![Dev Screenshot](dev.png)
-
-### Production
-
-![Prod Screenshot](prod.png)
+- [jit.css](jit.css) - 2.19 kB Next.js estimate (7.5 kB on disk)
+- [jit.prettier.css](jit.prettier.css) (for easier reviewing)
